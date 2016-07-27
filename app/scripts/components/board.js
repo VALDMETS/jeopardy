@@ -10,13 +10,11 @@ const Board = React.createClass({
     }
   },
   render: function() {
-    console.log(this.state.categoryList);
     let categoryMap = this.state.categoryList.map(function(category, i){
       return <Category cat={category} key={i}/>
     });
     return (
       <section className="mainboard">
-        <span>wow</span>
         {categoryMap}
       </section>
     )

@@ -1,0 +1,55 @@
+import Bb from 'backbone';
+import $ from 'jquery';
+import store from '../store';
+
+const BoardData = Bb.Model.extend({
+
+  defaults: {
+    questionList: []
+  },
+
+  questionPull: function() {
+    let randInt = Math.ceil(Math.random()*18400);
+    $.ajax({
+      url: `http://jservice.io/api/categories?count=6&offset=${randInt}`,
+      success: (response) => {
+        let catArray = response.map(function(category, i, arr){
+          return category.id;
+        });
+        catArray.forEach((id, i, arr) => {
+          $.ajax({
+            url: `http://jservice.io/api/category?id=${id}`,
+            success: (response) => {
+              let batch = {
+                category: response.title,
+                id: response.id,
+                clues: []
+              }
+              for (var i = 200; i <=1000; i+=200) {
+                response.clues.forEach(function(clue){
+                  if (clue.value===i) {
+                    batch.clues[(i/200)-1] = {
+                      id: clue.id,
+                      answer: clue.answer,
+                      question: clue.question,
+                      value: clue.value
+                    }
+                  }
+                });
+              }
+              let tempList = this.get('questionList');
+              tempList.push(batch);
+              this.set('questionList', tempList);
+              store.questionBank.push(batch);
+              this.trigger('update');
+            }
+          });
+        });
+      }
+    })
+  }
+});
+
+let boardData = new BoardData();
+
+export default boardData;

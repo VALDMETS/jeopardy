@@ -40,12 +40,28 @@ body {
     font-size: 18px; }
   .questionwindow .questionbox {
     width: 90%;
-    height: 250px;
-    padding: 5%;
+    height: 220px;
+    padding: 2% 5% 0 5%;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
     text-align: center;
-    font-size: 36px; }
+    font-size: 36px;
+    overflow: scroll; }
+  .questionwindow input {
+    display: block;
+    width: 80%;
+    font-size: 22px;
+    margin: 20px auto;
+    text-align: center; }
+
+.playerbox {
+  display: block;
+  float: left;
+  width: 24.5%;
+  height: 100px;
+  margin: 60px 4% 0 4%;
+  text-align: center;
+  border: 2px solid white; }
 
 .clickblocked {
   pointer-events: none; }

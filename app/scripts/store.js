@@ -1,7 +1,13 @@
 
 
 let store = {
-  questionBank: []
+  currentQuestion: {
+    id: '',
+    answer: '',
+    question: '',
+    value: '',
+    storedValue: ''
+  }
 };
 
 export default store;

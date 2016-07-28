@@ -16,6 +16,7 @@ const Board = React.createClass({
     return (
       <section className="mainboard">
         {categoryMap}
+        {this.props.children}
       </section>
     )
   },

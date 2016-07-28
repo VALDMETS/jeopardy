@@ -1,0 +1,57 @@
+body {
+  background-color: #2222EE;
+  color: white;
+}
+.mainboard {
+  display: block;
+  width: 1100px;
+  margin: 20px auto;
+}
+.category {
+  display: block;
+  float: left;
+  width: 16.66%;
+  div {
+    box-sizing: border-box;
+    padding: 15px 5px 0 5px;
+    text-align: center;
+    font-size: 15px;
+    border: 1px solid white;
+    height: 80px;
+  }
+  .clue {
+    font-size: 22px;
+  }
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(black, .8);
+}
+.questionwindow {
+  margin: 60px auto;
+  width: 800px;
+  height: 500px;
+  background-color: #2222EE;
+  h5 {
+    height: 50px;
+    text-align: center;
+    font-size: 18px;
+  }
+  .questionbox {
+    width: 90%;
+    height: 250px;
+    padding: 5%;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+
+    text-align: center;
+    font-size: 36px;
+  }
+}
+.clickblocked {
+  pointer-events: none;
+}

@@ -34,7 +34,7 @@ const BoardData = Bb.Model.extend({
                                             id: clue.id,
                                             answer: clue.answer.toUpperCase(),
                                             question: clue.question.toUpperCase(),
-                                            value: clue.value
+                                            value: '$' + clue.value
                                         }
                                     }
 
@@ -46,7 +46,7 @@ const BoardData = Bb.Model.extend({
                                         id: findNullClue.id,
                                         answer: findNullClue.answer.toUpperCase(),
                                         question: findNullClue.question.toUpperCase(),
-                                        value: i
+                                        value: '$' + i
                                       }
                                     }
                                   });
@@ -56,7 +56,6 @@ const BoardData = Bb.Model.extend({
                             let tempList = this.get('questionList');
                             tempList.push(batch);
                             this.set('questionList', tempList);
-                            store.questionBank.push(batch);
                             this.trigger('update');
                         }
                     });

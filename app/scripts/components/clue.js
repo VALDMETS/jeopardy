@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { hashHistory } from 'react-router';
 
+import Alert from './alert';
 import boardData from '../data/boarddata';
 import store from '../store';
 
@@ -14,10 +15,11 @@ const Clue = React.createClass({
     )
   },
   clickFunction: function(e) {
+    store.alert.clearout('wow', 4000);
     store.currentQuestion = this.props.data;
     store.currentQuestion.storedValue = this.props.data.value;
     this.props.data.value = '';
-    
+
     let temp = document.getElementById(this.props.data.id);
     temp.className = ' clickblocked';
     // ReactDOM.unmountComponentAtNode(document.getElementById(this.props.data.id));

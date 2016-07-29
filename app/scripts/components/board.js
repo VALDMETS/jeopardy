@@ -2,6 +2,7 @@ import React from 'react';
 
 import Category from './category';
 import Player from './player';
+import Alert from './alert';
 import store from '../store';
 import boardData from '../data/boarddata';
 

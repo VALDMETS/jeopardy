@@ -20,7 +20,7 @@ const Input = React.createClass({
     e.preventDefault();
     window.clearTimeout(this.state.counter);
 
-    // This is more robust answer checking
+    // Answer Checking Stuff - Clears gunk out from the API and is a little less oppressive than a total match.
 
     let currentTry = document.getElementById('answerfield').value.toUpperCase();
     let currentCorrectArray = store.currentQuestion.answer.replace('<I>','').replace('</I>','').replace('(','').replace(')','');
@@ -33,21 +33,11 @@ const Input = React.createClass({
     currentCorrectArray = currentCorrectArray.filter(function(word){
       if (currentTry.search(word)!=-1) { return true; } else {return false}
     });
-    if (currentCorrectArray) {
+    if (currentCorrectArray.length) {
       store.playerList[store.currentPlayer].money += Number(store.currentQuestion.storedValue.slice(1));
     } else {
       store.playerList[store.currentPlayer].money -= Number(store.currentQuestion.storedValue.slice(1));
     }
-
-    // Previous Answer Checker - works but this API is wack
-
-    // if (currentTry.search(store.currentQuestion.answer)!=-1) {
-    //   store.playerList[store.currentPlayer].money += Number(store.currentQuestion.storedValue.slice(1));
-    //   console.log('correct');
-    // } else {
-    //   store.playerList[store.currentPlayer].money -= Number(store.currentQuestion.storedValue.slice(1));
-    //   console.log('incorrect');
-    // }
 
     hashHistory.push('/main');
   },

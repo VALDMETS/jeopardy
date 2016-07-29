@@ -11,8 +11,8 @@ const Input = React.createClass({
   render: function(){
     return (
       <form onSubmit={this.submitFunction}>
-        <input type="text" id="answerfield" placeholder={store.playerList[store.currentPlayer].name + "\'s Answer"}/>
-        <input type="submit" value="Submit"/>
+        <input type="text" id="answerfield" placeholder={store.playerList[store.currentPlayer].name + "\'S ANSWER"}/>
+        <input type="submit" value="SUBMIT"/>
       </form>
     )
   },
@@ -23,10 +23,10 @@ const Input = React.createClass({
     // Answer Checking Stuff - Clears gunk out from the API and is a little less oppressive than a total match.
 
     let currentTry = document.getElementById('answerfield').value.toUpperCase();
-    let currentCorrectArray = store.currentQuestion.answer.replace('<I>','').replace('</I>','').replace('(','').replace(')','');
-    currentCorrectArray = currentCorrectArray.split(' ');
+    store.currentQuestion.answer = store.currentQuestion.answer.replace('<I>','').replace('</I>','').replace('(','').replace(')','');
+    let currentCorrectArray = store.currentQuestion.answer.split(' ');
     currentCorrectArray = currentCorrectArray.filter(function(word){
-      if (word.length < 4) {
+      if (word.length < 3) {
         return false;
       } else { return true; }
     });
@@ -35,16 +35,40 @@ const Input = React.createClass({
     });
     if (currentCorrectArray.length) {
       store.playerList[store.currentPlayer].money += Number(store.currentQuestion.storedValue.slice(1));
+      store.alert.set('CORRECT!');
+      setTimeout(function(){
+        store.alert.set('ANSWER: ' + store.currentQuestion.answer);
+      },2000);
+      setTimeout(function(){
+        store.alert.set('BARKLAR\'S TURN TO PICK');
+      },4000);
     } else {
       store.playerList[store.currentPlayer].money -= Number(store.currentQuestion.storedValue.slice(1));
+      store.alert.set('INCORRECT!');
+      setTimeout(function(){
+        store.alert.set('ANSWER: ' + store.currentQuestion.answer);
+      },2000);
+      setTimeout(function(){
+        store.alert.set('BARKLAR\'S TURN TO PICK');
+      },4000);
     }
 
     hashHistory.push('/main');
   },
   countdown: function() {
-    console.log('out of time!');
     store.playerList[store.currentPlayer].money -= Number(store.currentQuestion.storedValue.slice(1));
     hashHistory.push('/main');
+    store.alert.set('OUT OF TIME!');
+    setTimeout(function(){
+      store.alert.set('ANSWER: ' + store.currentQuestion.answer);
+    },2000);
+    setTimeout(function(){
+      // if (location.hash==='/main*') {
+        store.alert.set('BARKLAR\'S TURN TO PICK');
+      // }
+
+    },4000);
+
   }
 });
 

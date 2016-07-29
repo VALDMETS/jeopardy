@@ -15,7 +15,7 @@ const Clue = React.createClass({
     )
   },
   clickFunction: function(e) {
-    store.alert.clearout('wow', 4000);
+    store.alert.set('FOR ' + this.props.data.value)
     store.currentQuestion = this.props.data;
     store.currentQuestion.storedValue = this.props.data.value;
     this.props.data.value = '';

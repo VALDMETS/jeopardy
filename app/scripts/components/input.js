@@ -19,14 +19,36 @@ const Input = React.createClass({
   submitFunction: function(e) {
     e.preventDefault();
     window.clearTimeout(this.state.counter);
-    let currentAnswer = document.getElementById('answerfield').value.toUpperCase();
-    if (currentAnswer.search(store.currentQuestion.answer)!=-1) {
+
+    // This is more robust answer checking
+
+    let currentTry = document.getElementById('answerfield').value.toUpperCase();
+    let currentCorrectArray = store.currentQuestion.answer.replace('<I>','').replace('</I>','').replace('(','').replace(')','');
+    currentCorrectArray = currentCorrectArray.split(' ');
+    currentCorrectArray = currentCorrectArray.filter(function(word){
+      if (word.length < 4) {
+        return false;
+      } else { return true; }
+    });
+    currentCorrectArray = currentCorrectArray.filter(function(word){
+      if (currentTry.search(word)!=-1) { return true; } else {return false}
+    });
+    if (currentCorrectArray) {
       store.playerList[store.currentPlayer].money += Number(store.currentQuestion.storedValue.slice(1));
-      console.log('correct');
     } else {
       store.playerList[store.currentPlayer].money -= Number(store.currentQuestion.storedValue.slice(1));
-      console.log('incorrect');
     }
+
+    // Previous Answer Checker - works but this API is wack
+
+    // if (currentTry.search(store.currentQuestion.answer)!=-1) {
+    //   store.playerList[store.currentPlayer].money += Number(store.currentQuestion.storedValue.slice(1));
+    //   console.log('correct');
+    // } else {
+    //   store.playerList[store.currentPlayer].money -= Number(store.currentQuestion.storedValue.slice(1));
+    //   console.log('incorrect');
+    // }
+
     hashHistory.push('/main');
   },
   countdown: function() {

@@ -16,6 +16,9 @@ const Input = React.createClass({
       </form>
     )
   },
+  componentDidMount: function() {
+    document.getElementById('answerfield').focus();
+  },
   submitFunction: function(e) {
     e.preventDefault();
     window.clearTimeout(this.state.counter);

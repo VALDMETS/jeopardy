@@ -6,13 +6,13 @@ let store = {
   //This is a default that no player is currently answering. Players are zero indexed.
   currentPlayer: -1,
   playerList: [{
-    name: 'BARKLAR',
+    name: '',
     money: 0
   }, {
-    name: 'JORSEPHEEN',
+    name: '',
     money: 0
   }, {
-    name: 'KRAMAAL',
+    name: '',
     money: 0
   }],
   currentQuestion: {

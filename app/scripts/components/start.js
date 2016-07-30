@@ -7,11 +7,12 @@ const Start = React.createClass({
     return (
       <div className="startscreen">
         <h2>CLEVERLY</h2>
-        <p>WELCOME TO CLEVERLY, THE NEW COPYRIGHT NON-INFRINGING HIT APP. WHAT ARE YOUR NAMES?</p>
+        <p>THE HIT NEW COPYRIGHT NON-INFRINGING GAME SHOW APP</p>
         <form onSubmit={this.submitFunction}>
-          <input type="text" id="player1" placeholder="PLAYER 1"/>
-          <input type="text" id="player2" placeholder="PLAYER 2"/>
-          <input type="text" id="player3" placeholder="PLAYER 3"/>
+          <h4>WHAT ARE YOUR NAMES?</h4>
+          <input type="text" id="player1" placeholder="PLAYER 1 NAME"/>
+          <input type="text" id="player2" placeholder="PLAYER 2 NAME"/>
+          <input type="text" id="player3" placeholder="PLAYER 3 NAME"/>
           <input type="submit" value="START CLEVERLY"/>
         </form>
       </div>
@@ -20,9 +21,8 @@ const Start = React.createClass({
   submitFunction: function(e) {
     e.preventDefault();
     for (var i = 0; i < 3; i++) {
-      store.playerList[i].name = document.getElementById('player' + (i+1)).value;
+      store.playerList[i].name = document.getElementById('player' + (i+1)).value.toUpperCase();
     }
-    console.log(store.playerList);
     hashHistory.push('/main');
   }
 });

@@ -18,6 +18,20 @@ const Input = React.createClass({
   },
   componentDidMount: function() {
     document.getElementById('answerfield').focus();
+    store.countdown.bar = '';
+    store.countdown.width = 0;
+    store.countdown2.bar = document.getElementById("countdownmove");
+    store.countdown2.width = 100;
+    let id = setInterval(frame, 12);
+    function frame() {
+        if (store.countdown2.width <= 0) {
+            clearInterval(id);
+            store.countdown2.width = 100;
+        } else {
+            store.countdown2.width -= .1;
+            store.countdown2.bar.style.width = store.countdown2.width + '%';
+        }
+    }
   },
   submitFunction: function(e) {
     e.preventDefault();
@@ -26,7 +40,7 @@ const Input = React.createClass({
     // Answer Checking Stuff - Clears gunk out from the API and is a little less oppressive than a total match.
 
     let currentTry = document.getElementById('answerfield').value.toUpperCase();
-    store.currentQuestion.answer = store.currentQuestion.answer.replace('<I>','').replace('</I>','').replace('(','').replace(')','');
+    store.currentQuestion.answer = store.currentQuestion.answer.replace('<I>','').replace('</I>','').replace('(','').replace(')','').replace('\\','');
     let currentCorrectArray = store.currentQuestion.answer.split(' ');
     currentCorrectArray = currentCorrectArray.filter(function(word){
       if (word.length < 3) {
@@ -43,7 +57,8 @@ const Input = React.createClass({
         store.alert.set('ANSWER: ' + store.currentQuestion.answer);
       },2000);
       setTimeout(function(){
-        store.alert.set('BARKLAR\'S TURN TO PICK');
+        store.currentSelector = store.currentPlayer;
+        store.alert.set(store.playerList[store.currentSelector].name + '\'S TURN TO PICK');
       },4000);
     } else {
       store.playerList[store.currentPlayer].money -= Number(store.currentQuestion.storedValue.slice(1));
@@ -52,7 +67,7 @@ const Input = React.createClass({
         store.alert.set('ANSWER: ' + store.currentQuestion.answer);
       },2000);
       setTimeout(function(){
-        store.alert.set('BARKLAR\'S TURN TO PICK');
+        store.alert.set(store.playerList[store.currentSelector].name + '\'S TURN TO PICK');
       },4000);
     }
 
@@ -67,7 +82,7 @@ const Input = React.createClass({
     },2000);
     setTimeout(function(){
       // if (location.hash==='/main*') {
-        store.alert.set('BARKLAR\'S TURN TO PICK');
+        store.alert.set(store.playerList[store.currentSelector].name + '\'S TURN TO PICK');
       // }
 
     },4000);

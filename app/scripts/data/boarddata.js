@@ -55,6 +55,8 @@ const BoardData = Bb.Model.extend({
                             }
                             let tempList = this.get('questionList');
                             tempList.push(batch);
+                            store.currentSelector = Math.floor(Math.random()*3);
+                            store.alert.set(store.playerList[store.currentSelector].name + '\'S TURN TO PICK');
                             this.set('questionList', tempList);
                             this.trigger('update');
                         }

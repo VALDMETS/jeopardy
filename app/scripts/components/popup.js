@@ -13,7 +13,10 @@ const Popup = React.createClass({
     return (
       <div className="overlay">
         <div className="questionwindow">
-          <h5>{store.currentQuestion.storedValue}</h5>
+          <div id="countdownbar">
+            <div id="countdownmove">
+            </div>
+          </div>
           <div className="questionbox">
             {store.currentQuestion.question}
           </div>
@@ -36,14 +39,30 @@ const Popup = React.createClass({
       </div>
     )
   },
+  componentDidMount: function() {
+    store.countdown2.bar = '';
+    store.countdown2.width = 0;
+    store.countdown.bar = document.getElementById("countdownmove");
+    store.countdown.width = 100;
+    let id = setInterval(frame, 12);
+    function frame() {
+        if (store.countdown.width <= 0) {
+            clearInterval(id);
+            store.countdown.width = 100;
+        } else {
+            store.countdown.width -= .1;
+            store.countdown.bar.style.width = store.countdown.width + '%';
+        }
+    }
+  },
   keyHandler: function(e) {
     window.clearTimeout(this.state.counter);
-    console.log(store.currentQuestion);
     if (e.which===65 || e.which === 71 || e.which === 76) {
       if(e.which===65) {store.currentPlayer = 0} else if
       (e.which===71) {store.currentPlayer = 1} else if
       (e.which===76) {store.currentPlayer = 2}
       console.log(store.currentPlayer);
+
       hashHistory.push('/main/question/input');
       document.removeEventListener('keyup', this.keyHandler);
     }
@@ -56,7 +75,7 @@ const Popup = React.createClass({
       store.alert.set('ANSWER: ' + store.currentQuestion.answer);
     },2000);
     setTimeout(function(){
-      store.alert.set('BARKLAR\'S TURN TO PICK');
+      store.alert.set(store.playerList[store.currentSelector].name + '\'S TURN TO PICK');
     },4000);
   }
 });

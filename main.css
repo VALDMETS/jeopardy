@@ -4,20 +4,50 @@
 @font-face {
   font-family: 'JeopardyB';
   src: url("assets/gyparody_hv.ttf") format("truetype"); }
+@keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-moz-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+@-webkit-keyframes fadein {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 body {
   background-color: #2222EE;
+  font-family: sans-serif;
   color: white;
   margin: 0; }
+
+.startscreen h2 {
+  text-align: center;
+  font-size: 100px;
+  letter-spacing: 5px;
+  font-family: 'JeopardyB', sans-serif; }
+.startscreen input {
+  text-transform: uppercase; }
 
 .mainboard {
   display: block;
   width: 1100px;
-  margin: 20px auto; }
+  margin: 20px auto;
+  -webkit-animation: fadein 3s;
+  -moz-animation: fadein 3s;
+  animation: fadein 3s; }
 
 .alertbar {
   width: 100%;
   height: 60px;
-  background-color: red; }
+  background-color: red;
+  -webkit-animation: fadein 3s;
+  -moz-animation: fadein 3s;
+  animation: fadein 3s; }
   .alertbar div {
     padding-top: 20px;
     text-align: center;
@@ -51,7 +81,10 @@ body {
   margin: 60px auto;
   width: 800px;
   height: 500px;
-  background-color: #2222EE; }
+  background-color: #2222EE;
+  -webkit-animation: fadein .5s;
+  -moz-animation: fadein .5s;
+  animation: fadein .5s; }
   .questionwindow h5 {
     height: 50px;
     text-align: center;
@@ -66,11 +99,24 @@ body {
     font-size: 36px;
     overflow: scroll; }
   .questionwindow input {
+    text-transform: uppercase;
     display: block;
     width: 80%;
     font-size: 22px;
     margin: 20px auto;
     text-align: center; }
+
+#countdownbar {
+  position: relative;
+  width: 80%;
+  height: 30px;
+  background-color: black;
+  margin: 10px auto; }
+  #countdownbar #countdownmove {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: green; }
 
 .buzzerbox {
   position: absolute;

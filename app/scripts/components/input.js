@@ -5,7 +5,8 @@ import { hashHistory } from 'react-router';
 const Input = React.createClass({
   getInitialState: function(){
     return {
-      counter: window.setTimeout(this.countdown,10000)
+      counter: window.setTimeout(this.countdown,12000),
+      sound: window.setTimeout(this.soundcount, 7000)
     }
   },
   render: function(){
@@ -36,6 +37,9 @@ const Input = React.createClass({
   submitFunction: function(e) {
     e.preventDefault();
     window.clearTimeout(this.state.counter);
+    window.clearTimeout(this.state.sound);
+    store.sfx_countdown.pause();
+    store.sfx_countdown.currentTime = 0;
 
     // Answer Checking Stuff - Clears gunk out from the API and is a little less oppressive than a total match.
 
@@ -43,7 +47,7 @@ const Input = React.createClass({
     store.currentQuestion.answer = store.currentQuestion.answer.replace('<I>','').replace('</I>','').replace('(','').replace(')','').replace('\\','');
     let currentCorrectArray = store.currentQuestion.answer.split(' ');
     currentCorrectArray = currentCorrectArray.filter(function(word){
-      if (word.length < 3) {
+      if (word.length < 3 || word === "THE") {
         return false;
       } else { return true; }
     });
@@ -52,6 +56,7 @@ const Input = React.createClass({
     });
     if (currentCorrectArray.length) {
       store.playerList[store.currentPlayer].money += Number(store.currentQuestion.storedValue.slice(1));
+      store.sfx_right.play();
       store.alert.set('CORRECT!');
       setTimeout(function(){
         store.alert.set('ANSWER: ' + store.currentQuestion.answer);
@@ -62,6 +67,7 @@ const Input = React.createClass({
       },4000);
     } else {
       store.playerList[store.currentPlayer].money -= Number(store.currentQuestion.storedValue.slice(1));
+      store.sfx_wrong.play();
       store.alert.set('INCORRECT!');
       setTimeout(function(){
         store.alert.set('ANSWER: ' + store.currentQuestion.answer);
@@ -76,6 +82,7 @@ const Input = React.createClass({
   countdown: function() {
     store.playerList[store.currentPlayer].money -= Number(store.currentQuestion.storedValue.slice(1));
     hashHistory.push('/main');
+    store.sfx_wrong.play();
     store.alert.set('OUT OF TIME!');
     setTimeout(function(){
       store.alert.set('ANSWER: ' + store.currentQuestion.answer);
@@ -84,9 +91,10 @@ const Input = React.createClass({
       // if (location.hash==='/main*') {
         store.alert.set(store.playerList[store.currentSelector].name + '\'S TURN TO PICK');
       // }
-
     },4000);
-
+  },
+  soundcount: function() {
+    store.sfx_countdown.play();
   }
 });
 

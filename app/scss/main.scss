@@ -1,6 +1,8 @@
+@import 'variables';
+
 @font-face {
-  font-family: 'JeopardyA';
-  src: url('assets/gyparody_rg.ttf')  format('truetype');
+  font-family: 'Longhaul';
+  src: url('assets/Longhaul.ttf')  format('truetype');
 }
 @font-face {
   font-family: 'JeopardyB';
@@ -21,27 +23,72 @@
 
 
 body {
-  background-color: #2222EE;
-  font-family: sans-serif;
-  color: white;
+  background-color: $black;
+  font-family: Tahoma;
+  color: $green;
   margin: 0;
 }
 
 .startscreen {
   h2 {
+    color: $green;
+    margin: 50px 0 20px 0;
+    display: block;
     text-align: center;
+    text-shadow: 20px 4px 10px $black;
     font-size: 100px;
-    letter-spacing: 5px;
-    font-family: 'JeopardyB', sans-serif;
+    letter-spacing: 12px;
+    background-image: url('assets/matrix.gif');
+    font-family: 'Longhaul', sans-serif;
+    padding: 40px 0 20px 0;
+    border-bottom: 2px solid $green;
+    border-top: 2px solid $green;
+  }
+  p {
+    font-style: italic;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: 200;
   }
   input {
     text-transform: uppercase;
+    background: none;
+    border: 2px solid $green;
+    color: $green;
+    font-size: 20px;
+    width: 50%;
+    margin: 10px;
+    padding: 3px 3px 3px 13px;
+  }
+  form {
+    outline: none;
+    border: 2px solid $green;
+    padding: 20px;
+    margin: 25px auto;
+    width: 520px;
+    h4 {
+      margin: 10px 0 20px 0;
+      font-weight: 400;
+      font-size: 24px;
+      text-align: center;
+    }
+    span {
+      font-size: 15px;
+      font-weight: 200;
+    }
+    #startsubmit {
+      display: block;
+      width: 60%;
+      padding: 3px;
+      margin: 50px auto 15px auto;
+    }
   }
 }
 .mainboard {
   display: block;
   width: 1100px;
   margin: 20px auto;
+  background-color: $black;
 
     -webkit-animation: fadein 3s;
        -moz-animation: fadein 3s;
@@ -50,16 +97,23 @@ body {
 .alertbar {
   width: 100%;
   height: 60px;
-  background-color: red;
+  background-image: url('assets/matrix.gif');
+  background-color:  $green;
+  border-bottom: 2px solid $green;
 
   -webkit-animation: fadein 3s;
      -moz-animation: fadein 3s;
           animation: fadein 3s;
 
   div {
+    font-size: 30px;
+    letter-spacing: 1.5px;
+    font-family: 'Longhaul','sans-serif';
+    color: $white;
+    text-shadow: 2px 2px $black;
     padding-top: 20px;
     text-align: center;
-    width: 300px;
+    // width: 500px;
     margin: 0 auto;
   }
 }
@@ -68,15 +122,26 @@ body {
   float: left;
   width: 16.66%;
   div {
+    color: $green;
+    text-shadow: 2px 1px $dark;
     box-sizing: border-box;
-    padding: 15px 5px 0 5px;
+    // text-shadow: 1px 1px 1px $green;
+    padding: 8px 5px 0 5px;
     text-align: center;
-    font-size: 15px;
-    border: 1px solid white;
+    font-size: 18px;
+    border: 1px solid $green;
+    box-shadow: 3px 3px 3px $dark;
     height: 80px;
   }
   .clue {
-    font-size: 22px;
+    cursor: pointer;
+    padding: 20px 5px 0 5px;
+    font-size: 28px;
+    transition: 1s;
+    &:hover {
+
+      color: $white;
+    }
   }
 }
 .overlay {
@@ -88,11 +153,12 @@ body {
   background: rgba(black, .8);
 }
 .questionwindow {
+  border: 2px solid $green;
   position: relative;
   margin: 60px auto;
   width: 800px;
   height: 500px;
-  background-color: #2222EE;
+  background-color: $black;
 
   -webkit-animation: fadein .5s;
      -moz-animation: fadein .5s;
@@ -107,8 +173,8 @@ body {
     width: 90%;
     height: 220px;
     padding: 2% 5% 0 5%;
-    border-top: 2px solid white;
-    border-bottom: 2px solid white;
+    border-top: 2px solid $green;
+    border-bottom: 2px solid $green;
 
     text-align: center;
     font-size: 36px;
@@ -128,12 +194,12 @@ body {
   width: 80%;
   height: 30px;
   background-color: black;
-  margin: 10px auto;
+  margin: 30px auto;
   #countdownmove {
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: green;
+    background-color: $green;
   }
 }
 .buzzerbox {
@@ -163,7 +229,7 @@ body {
   height: 100px;
   margin: 40px 4% 0 4%;
   text-align: center;
-  border: 2px solid white;
+  border: 2px solid $green;
 }
 .clickblocked {
   pointer-events: none;

@@ -15,7 +15,6 @@ const Clue = React.createClass({
     )
   },
   clickFunction: function(e) {
-    store.sfx_buzz.src = 'http://www.wavsource.com/snds_2016-07-24_1073029414890864/sfx/buzzer_x.wav';
     store.sfx_buzz.play();
     store.alert.set('FOR ' + this.props.data.value)
     store.currentQuestion = this.props.data;

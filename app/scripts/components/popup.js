@@ -5,7 +5,8 @@ import store from '../store';
 const Popup = React.createClass({
   getInitialState: function(){
     return {
-      counter: window.setTimeout(this.countdown,12000)
+      counter: window.setTimeout(this.countdown,12000),
+      sound: window.setTimeout(this.soundcount,7000)
     }
   },
   render: function(){
@@ -57,11 +58,14 @@ const Popup = React.createClass({
   },
   keyHandler: function(e) {
     window.clearTimeout(this.state.counter);
+    window.clearTimeout(this.state.sound);
+    store.sfx_countdown.pause();
+    store.sfx_countdown.currentTime = 0;
+    store.sfx_buzzin.play();
     if (e.which===65 || e.which === 71 || e.which === 76) {
       if(e.which===65) {store.currentPlayer = 0} else if
       (e.which===71) {store.currentPlayer = 1} else if
       (e.which===76) {store.currentPlayer = 2}
-      console.log(store.currentPlayer);
 
       hashHistory.push('/main/question/input');
       document.removeEventListener('keyup', this.keyHandler);
@@ -70,6 +74,7 @@ const Popup = React.createClass({
   countdown: function() {
     console.log('counted down on answer time!');
     hashHistory.push('/main');
+    store.sfx_wrong.play();
     store.alert.set('OUT OF TIME!');
     setTimeout(function(){
       store.alert.set('ANSWER: ' + store.currentQuestion.answer);
@@ -77,6 +82,9 @@ const Popup = React.createClass({
     setTimeout(function(){
       store.alert.set(store.playerList[store.currentSelector].name + '\'S TURN TO PICK');
     },4000);
+  },
+  soundcount: function() {
+    store.sfx_countdown.play();
   }
 });
 

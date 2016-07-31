@@ -30,7 +30,13 @@ let store = {
     money: 0
   }],
   currentSelector: -1,
-  sfx_buzz: new Audio('http://www.wavsource.com/snds_2016-07-24_1073029414890864/sfx/buzzer_x.wav'),
+  randomName: ['MYSTERIO','BLANK FRANK', 'MISSING SANDY', 'ABSENT MADISON', 'LAZY DAISY', 'INVISIBLE TODD', 'PASSIVE PAULA', 'QUIET QUENTIN'],
+  sfx_buzz: new Audio('assets/sounds/chime.wav'),
+  sfx_buzzin: new Audio('assets/sounds/buzzin.wav'),
+  sfx_right: new Audio('assets/sounds/synthright.wav'),
+  sfx_wrong: new Audio('assets/sounds/wrong.wav'),
+  sfx_countdown: new Audio('assets/sounds/ticktock.wav'),
+  sfx_intro: new Audio('assets/sounds/intro.wav')
 };
 
 export default store;

@@ -95,9 +95,7 @@ const Input = React.createClass({
       store.alert.set('ANSWER: ' + store.currentQuestion.answer);
     },2000);
     setTimeout(function(){
-      // if (location.hash==='/main*') {
-        store.alert.set(store.playerList[store.currentSelector].name + '\'S TURN TO PICK');
-      // }
+      store.alert.set(store.playerList[store.currentSelector].name + '\'S TURN TO PICK');
     },4000);
   },
   soundcount: function() {

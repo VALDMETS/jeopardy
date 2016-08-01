@@ -10,7 +10,6 @@ let store = {
     bar: '',
     width: 100
   },
-  //This is a default that no player is currently answering. Players are zero indexed.
   currentPlayer: -1,
   currentQuestion: {
     id: '',

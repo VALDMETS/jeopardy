@@ -23,7 +23,6 @@ const Clue = React.createClass({
 
     let temp = document.getElementById(this.props.data.id);
     temp.className = ' clickblocked';
-    // ReactDOM.unmountComponentAtNode(document.getElementById(this.props.data.id));
     hashHistory.push('/main/question');
   }
 });

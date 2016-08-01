@@ -51,6 +51,7 @@ body {
     font-weight: 200;
   }
   input {
+    outline: none;
     text-transform: uppercase;
     background: none;
     border: 2px solid $green;
@@ -193,7 +194,7 @@ body {
   position: relative;
   width: 80%;
   height: 30px;
-  background-color: black;
+  background-color: $black;
   margin: 30px auto;
   #countdownmove {
     position: absolute;

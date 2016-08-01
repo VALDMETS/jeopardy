@@ -1,6 +1,6 @@
 # CYBER JEOPARDY
 
-http://cyberjeopardy.surge.sh/#/start?_k=njk0ah
+http://cyberjeopardy.surge.sh
 
 This is a Jeopardy style in-browser app game for three players. It uses data from http://jservice.io/ for questions and answers and was built with a React framework, including some jQuery and Backbone.
 

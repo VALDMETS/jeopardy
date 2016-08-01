@@ -13,7 +13,7 @@ const BoardData = Bb.Model.extend({
         let randInt = Math.ceil(Math.random() * 5000);
         console.log(randInt);
         $.ajax({
-            url: `https://jservice.io/api/categories?count=6&offset=${randInt}`,
+            url: `http://jservice.io/api/categories?count=6&offset=${randInt}`,
             success: (response) => {
                 let catArray = response.map(function(category, i, arr) {
                     return category.id;

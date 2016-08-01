@@ -4,6 +4,9 @@ import store from '../store';
 
 const BoardData = Bb.Model.extend({
     idAttribute: 'id',
+    headers: {
+      'Content-Security-Policy': 'http://jservice.io'
+    },
     defaults: {
         questionList: []
     },

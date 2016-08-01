@@ -5,6 +5,7 @@ import Start from './start';
 import Board from './board';
 import Popup from './popup';
 import Input from './input';
+import Finish from './finish';
 
 const router = (
   <Router history={hashHistory}>
@@ -14,6 +15,7 @@ const router = (
         <Route path="input" component={Input}/>
       </Route>
     </Route>
+    <Route path="/finish" component={Finish}/>
   </Router>
 );
 

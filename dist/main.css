@@ -199,7 +199,28 @@ body {
   text-align: center;
   border: 2px solid #2CE83E; }
 
+#winnerscreen h1 {
+  color: #2CE83E;
+  margin: 50px 0 20px 0;
+  display: block;
+  text-align: center;
+  text-shadow: 20px 4px 10px #0F0F0F;
+  font-size: 100px;
+  letter-spacing: 12px;
+  background-image: url("assets/matrix.gif");
+  font-family: 'Longhaul', sans-serif;
+  padding: 40px 0 20px 0;
+  border-bottom: 2px solid #2CE83E;
+  border-top: 2px solid #2CE83E; }
+#winnerscreen h4 {
+  font-size: 28px;
+  text-align: center;
+  font-weight: 300; }
+
 .clickblocked {
   pointer-events: none; }
+
+.hidden {
+  display: none; }
 
 /*# sourceMappingURL=main.css.map */

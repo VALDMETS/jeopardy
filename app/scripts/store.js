@@ -19,6 +19,7 @@ let store = {
     value: '',
     storedValue: ''
   },
+  endOfGame: 0,
   playerList: [{
     name: '',
     money: 0

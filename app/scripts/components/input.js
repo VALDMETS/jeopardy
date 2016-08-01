@@ -76,11 +76,18 @@ const Input = React.createClass({
         store.alert.set(store.playerList[store.currentSelector].name + '\'S TURN TO PICK');
       },4000);
     }
-
+    if (store.endOfGame === 30) {
+      hashHistory.push('/finish');
+      return null;
+    }
     hashHistory.push('/main');
   },
   countdown: function() {
     store.playerList[store.currentPlayer].money -= Number(store.currentQuestion.storedValue.slice(1));
+    if (store.endOfGame === 30) {
+      hashHistory.push('/finish');
+      return null;
+    }
     hashHistory.push('/main');
     store.sfx_wrong.play();
     store.alert.set('OUT OF TIME!');

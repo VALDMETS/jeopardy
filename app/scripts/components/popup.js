@@ -41,6 +41,8 @@ const Popup = React.createClass({
     )
   },
   componentDidMount: function() {
+    store.endOfGame++;
+    console.log(store.endOfGame);
     store.countdown2.bar = '';
     store.countdown2.width = 0;
     store.countdown.bar = document.getElementById("countdownmove");
@@ -57,12 +59,12 @@ const Popup = React.createClass({
     }
   },
   keyHandler: function(e) {
-    window.clearTimeout(this.state.counter);
-    window.clearTimeout(this.state.sound);
-    store.sfx_countdown.pause();
-    store.sfx_countdown.currentTime = 0;
-    store.sfx_buzzin.play();
     if (e.which===65 || e.which === 71 || e.which === 76) {
+      window.clearTimeout(this.state.counter);
+      window.clearTimeout(this.state.sound);
+      store.sfx_countdown.pause();
+      store.sfx_countdown.currentTime = 0;
+      store.sfx_buzzin.play();
       if(e.which===65) {store.currentPlayer = 0} else if
       (e.which===71) {store.currentPlayer = 1} else if
       (e.which===76) {store.currentPlayer = 2}
@@ -72,7 +74,10 @@ const Popup = React.createClass({
     }
   },
   countdown: function() {
-    console.log('counted down on answer time!');
+    if (store.endOfGame === 30) {
+      hashHistory.push('/finish');
+      return null;
+    }
     hashHistory.push('/main');
     store.sfx_wrong.play();
     store.alert.set('OUT OF TIME!');

@@ -231,6 +231,30 @@ body {
   text-align: center;
   border: 2px solid $green;
 }
+#winnerscreen {
+  h1 {
+    color: $green;
+    margin: 50px 0 20px 0;
+    display: block;
+    text-align: center;
+    text-shadow: 20px 4px 10px $black;
+    font-size: 100px;
+    letter-spacing: 12px;
+    background-image: url('assets/matrix.gif');
+    font-family: 'Longhaul', sans-serif;
+    padding: 40px 0 20px 0;
+    border-bottom: 2px solid $green;
+    border-top: 2px solid $green;
+  }
+  h4 {
+    font-size: 28px;
+    text-align: center;
+    font-weight: 300;
+  }
+}
 .clickblocked {
   pointer-events: none;
+}
+.hidden {
+  display: none;
 }
